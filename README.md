@@ -194,7 +194,7 @@ Utilize o arquivo SQL fornecido, `nortwhind.sql`, para popular o seu banco de da
 1. **Iniciar o Docker Compose** Execute o comando abaixo para subir os serviços:
     
     ```
-    docker-compose up
+    docker-compose up -d --build
     ```
     
     Aguarde as mensagens de configuração, como:
