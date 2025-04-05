@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "projeto com docker compose (pgadmin + postgresql)"
+version = "0.1.0"
+description = ""
+authors = ["Thiago Silva Farias <thiago_protect@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.3"
+dbt-postgres = "^1.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
