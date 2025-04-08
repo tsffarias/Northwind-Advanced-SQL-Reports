@@ -1,0 +1,36 @@
+version: 2  # Versão do esquema de metadados
+
+models:
+  - name: mart_sales_clients_to_marketing
+    description: "Clientes para marketing com performance abaixo da média"
+    columns:
+      - name: company_name
+        description: "Nome da empresa"
+        tests:
+          - not_null  # Garantindo que o nome não seja nulo.
+          - unique    # Assegurando que cada nome apareça somente uma vez.
+      - name: total
+        description: "Valor total calculado para cada cliente"
+        tests:
+          - not_null  # Total não pode ser nulo.
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"  # Total deve ser maior ou igual a zero.
+      - name: group_number
+        description: "Grupo numérico para segmentação de marketing (apenas 3, 4 ou 5)"
+        tests:
+          - not_null  # Esse campo deve conter valor.
+          - accepted_values:
+              values: [3, 4, 5]
+            
+  - name: mart_sales_customers  # Nome do modelo
+    description: "Tabela de clientes do mart"  # Descrição do modelo
+    columns:
+      - name: customer_id  # Nome da coluna
+        description: "ID único do cliente"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos
+          - unique  # Teste para garantir que os valores na coluna sejam únicos
+      - name: company_name  # Nome da coluna
+        description: "Nome da companina"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos

@@ -1,0 +1,12 @@
+version: 2  # Versão do esquema de metadados
+
+sources:
+  - name: northwind  # Nome da fonte de dados
+    description: "Fonte de dados bruta para clientes"  # Descrição da fonte de dados
+    database: northwind_b97t  # Nome do banco de dados
+    schema: public  # Esquema do banco de dados
+    tables:
+      - name: customers
+      - name: orders
+      - name: order_details
+      - name: products

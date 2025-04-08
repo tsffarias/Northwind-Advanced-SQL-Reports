@@ -1,0 +1,64 @@
+version: 2  # Versão do esquema de metadados
+
+models:
+  - name: int_orders  # Nome do modelo
+    description: "Tabela de pedidos do estágio"  # Descrição do modelo
+    columns:
+      - name: order_id  # Nome da coluna
+        description: "ID único do pedido"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos
+          - unique  # Teste para garantir que os valores na coluna sejam únicos
+      - name: customer_id  # Nome da coluna
+        description: "ID do cliente que fez o pedido"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos
+          - relationships:  # Teste para garantir a integridade referencial
+              to: ref('stg_customers')  # Referência ao modelo relacionado
+              field: customer_id  # Campo da coluna relacionada
+
+  - name: int_order_details  # Nome do modelo
+    description: "Tabela de detalhes dos pedidos"  # Descrição do modelo
+    columns:
+      - name: order_id  # Nome da coluna
+        description: "ID do pedido"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos
+      - name: product_id  # Nome da coluna
+        description: "ID do produto"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos
+      - name: unit_price  # Nome da coluna
+        description: "Preço unitário"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos
+      - name: quantity  # Nome da coluna
+        description: "Quantidade"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos
+
+  - name: int_products  # Nome do modelo
+    description: "Tabela de produtos"  # Descrição do modelo
+    columns:
+      - name: product_id  # Nome da coluna
+        description: "ID do produto"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos
+          - unique  # Teste para garantir que os valores na coluna sejam únicos
+      - name: product_name  # Nome da coluna
+        description: "Nome do produto"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos
+
+  - name: int_customers  # Nome do modelo
+    description: "Tabela de clientes"  # Descrição do modelo
+    columns:
+      - name: customer_id  # Nome da coluna
+        description: "ID do cliente"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos
+          - unique  # Teste para garantir que os valores na coluna sejam únicos
+      - name: company_name  # Nome da coluna
+        description: "Nome da empresa"  # Descrição do modelo
+        tests:
+          - not_null  # Teste para garantir que a coluna não tenha valores nulos
