@@ -5,8 +5,104 @@ sources:
     description: "Fonte de dados bruta para clientes"  # Descrição da fonte de dados
     database: northwind_b97t  # Nome do banco de dados
     schema: public  # Esquema do banco de dados
+    freshness:
+      warn_after:
+        count: 24
+        period: hour
+      error_after:
+        count: 48
+        period: hour
     tables:
       - name: customers
+        description: "Tabela de clientes"
+        columns:
+          - name: customer_id
+            description: "ID do cliente"
+          - name: company_name
+            description: "Nome da empresa do cliente"
+          - name: contact_name
+            description: "Nome do contato do cliente"
+          - name: contact_title
+            description: "Título do contato do cliente"
+          - name: address
+            description: "Endereço do cliente"
+          - name: city
+            description: "Cidade do cliente"
+          - name: region
+            description: "Região do cliente"
+          - name: postal_code
+            description: "Código postal do cliente"
+          - name: country
+            description: "País do cliente"
+          - name: phone
+            description: "Telefone do cliente"
+          - name: fax
+            description: "Fax do cliente"
       - name: orders
+        description: "Tabela de pedidos"
+        loaded_at_field: order_date
+        columns:
+          - name: order_id
+            description: "ID do pedido"
+          - name: customer_id
+            description: "ID do cliente"
+          - name: employee_id
+            description: "ID do funcionário"
+          - name: order_date
+            description: "Data do pedido"
+          - name: required_date
+            description: "Data necessária"
+          - name: shipped_date
+            description: "Data de envio"
+          - name: ship_via
+            description: "Método de envio"
+          - name: freight
+            description: "Frete"
+          - name: ship_name
+            description: "Nome do remetente"
+          - name: ship_address
+            description: "Endereço de envio"
+          - name: ship_city
+            description: "Cidade de envio"
+          - name: ship_region
+            description: "Região de envio"
+          - name: ship_postal_code
+            description: "Código postal de envio"
+          - name: ship_country
+            description: "País de envio"
       - name: order_details
+        description: "Tabela de detalhes do pedido"
+        columns:
+          - name: order_id
+            description: "ID do pedido"
+          - name: product_id
+            description: "ID do produto"
+          - name: unit_price
+            description: "Preço unitário"
+          - name: quantity
+            description: "Quantidade"
+          - name: discount
+            description: "Desconto"
       - name: products
+        description: "Tabela de produtos"
+        columns:
+          - name: product_id
+            description: "ID do produto"
+          - name: product_name
+            description: "Nome do produto"
+          - name: supplier_id
+            description: "ID do fornecedor"
+          - name: category_id
+            description: "ID da categoria"
+          - name: quantity_per_unit
+            description: "Quantidade por unidade"
+          - name: unit_price
+            description: "Preço unitário"
+          - name: units_in_stock
+            description: "Unidades em estoque"
+          - name: units_on_order
+            description: "Unidades em pedido"
+          - name: reorder_level
+            description: "Nível de reabastecimento"
+          - name: discontinued
+            description: "Descontinuado"
